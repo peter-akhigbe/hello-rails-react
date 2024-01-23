@@ -14,11 +14,20 @@ function Greeting() {
     }
   }, [dispatch, status]);
 
+  const displayGreet = () => {
+    return (
+      <div>
+        {status === 'loading' && 'Loading...'}
+        {status === 'succeeded' && greeting}
+        {status === 'failed' && `Error: ${error}`}
+      </div>
+    );
+  };
+
   return (
     <div>
-      {status === 'loading' && <p>Loading...</p>}
-      {status === 'succeeded' && <h1>{greeting}</h1>}
-      {status === 'failed' && <p>Error: {error}</p>}
+      <h1>Greeting</h1>
+      <h3>{displayGreet()}</h3>
     </div>
   );
 }
